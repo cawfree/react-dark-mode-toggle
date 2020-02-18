@@ -6,7 +6,7 @@ const options = Object.freeze({
   animationData: require("./animationData.json")
 });
 
-const NightModeToggle = ({ size, checked, onChange, ...extraProps }) => {
+const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
   const ref = useRef();
   const [progress, setProgress] = useState(() => 0);
   useEffect(() => {
@@ -51,6 +51,7 @@ const NightModeToggle = ({ size, checked, onChange, ...extraProps }) => {
       >
         <Lottie
           ref={ref}
+          speed={speed}
           isClickToPauseDisabled={true}
           eventListeners={eventListeners}
           forceSegments
@@ -68,13 +69,15 @@ const NightModeToggle = ({ size, checked, onChange, ...extraProps }) => {
 NightModeToggle.propTypes = {
   size: PropTypes.number,
   checked: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  speed: PropTypes.func
 };
 
 NightModeToggle.defaultProps = {
   size: 85,
   checked: false,
-  onChange: nextValue => null
+  onChange: nextValue => null,
+  speed: 1.3,
 };
 
 export default NightModeToggle;
