@@ -3072,7 +3072,7 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-"lottie-api@github:bodymovin/lottie-api#master":
+lottie-api@bodymovin/lottie-api#master:
   version "1.0.2"
   resolved "https://codeload.github.com/bodymovin/lottie-api/tar.gz/2015b503589c5f78265942d212e64abd1d756fcf"
 

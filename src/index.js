@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useReducer, useMemo } from "react";
 import PropTypes from "prop-types";
 import Lottie from "lottie-react-web";
 
@@ -8,26 +8,31 @@ const options = Object.freeze({
 
 const NightModeToggle = ({ size, checked, onChange, ...extraProps }) => {
   const ref = useRef();
-  const [progress, setProgress] = useState(() => 0);
+  const [progress, setProgress] = useReducer((_,next) => next, 0);
+
   useEffect(() => {
     if (progress >= 0.5) {
-      if (checked) {
+      if (ref.current && checked) {
         ref.current.anim.pause();
-      } else if (ref.current.anim.isPaused) {
+      } else if (ref.current && ref.current.anim.isPaused) {
         ref.current.anim.play();
       }
-    } else if (!checked) {
+    } else if (ref.current && !checked) {
       ref.current.anim.pause();
     }
   }, [checked, progress]);
+
   useEffect(() => (!!checked && ref.current.anim.play()) || undefined, []);
-  const [eventListeners] = useState(() => [
-    {
+
+  const eventListeners = useMemo(
+    () => [{
       eventName: "enterFrame",
       callback: ({ currentTime, totalTime }) =>
         setProgress(currentTime / totalTime)
-    }
-  ]);
+    }],
+    []
+  );
+
   return (
     <div
       onClick={() => ref.current.anim.isPaused && onChange(!checked)}
@@ -55,9 +60,9 @@ const NightModeToggle = ({ size, checked, onChange, ...extraProps }) => {
           eventListeners={eventListeners}
           forceSegments
           options={{
-            ...options,
             autoplay: false,
-            loop: true
+            loop: true,
+            ...options
           }}
         />
       </div>
