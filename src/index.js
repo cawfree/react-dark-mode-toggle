@@ -70,14 +70,14 @@ NightModeToggle.propTypes = {
   size: PropTypes.number,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
-  speed: PropTypes.func
+  speed: PropTypes.number
 };
 
 NightModeToggle.defaultProps = {
   size: 85,
   checked: false,
   onChange: nextValue => null,
-  speed: 1.3,
+  speed: 1.3
 };
 
 export default NightModeToggle;
