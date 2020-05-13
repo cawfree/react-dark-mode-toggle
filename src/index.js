@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import Lottie from "lottie-react-web";
 
 const options = Object.freeze({
-  animationData: require("./animationData.json")
+  animationData: require("./animationData.json"),
+  autoplay: false,
+  loop: true
 });
 
 const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
@@ -50,16 +52,13 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
         }}
       >
         <Lottie
+          key="$preventGlitches"
           ref={ref}
           speed={speed}
-          isClickToPauseDisabled={true}
+          isClickToPauseDisabled
           eventListeners={eventListeners}
           forceSegments
-          options={{
-            ...options,
-            autoplay: false,
-            loop: true
-          }}
+          options={options}
         />
       </div>
     </div>
@@ -80,4 +79,4 @@ NightModeToggle.defaultProps = {
   speed: 1.3
 };
 
-export default NightModeToggle;
+export default React.memo(NightModeToggle);
