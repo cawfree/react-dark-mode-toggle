@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, memo } from "react";
 import PropTypes from "prop-types";
 import Lottie from "lottie-react-web";
 
@@ -31,14 +31,21 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
     }
   ]);
   return (
-    <div
+    <button
       onClick={() => ref.current.anim.isPaused && onChange(!checked)}
       style={{
         cursor: "pointer",
         overflow: "hidden",
         width: size,
-        height: size * 0.47
+        height: size * 0.47,
+        appearance: 'none',
+        MozAppearance: 'none',
+        WebkitAppearance: 'none',
+        border: 'none',
+        backgroundColor: 'transparent',
+        padding: 0,
       }}
+      aria-hidden='true'
     >
       <div
         style={{
@@ -61,7 +68,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
           options={options}
         />
       </div>
-    </div>
+    </button>
   );
 };
 
@@ -79,4 +86,4 @@ NightModeToggle.defaultProps = {
   speed: 1.3
 };
 
-export default React.memo(NightModeToggle);
+export default memo(NightModeToggle);
