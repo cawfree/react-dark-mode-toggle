@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, memo } from "react";
 import PropTypes from "prop-types";
 import Lottie from "lottie-react-web";
+import parseUnit from "parse-unit";
 
 const options = Object.freeze({
   animationData: require("./animationData.json"),
@@ -11,6 +12,7 @@ const options = Object.freeze({
 const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
   const ref = useRef();
   const [progress, setProgress] = useState(() => 0);
+  const [sizeValue, sizeUnit] = parseUnit(size);
   useEffect(() => {
     if (progress >= 0.5) {
       if (checked) {
@@ -36,8 +38,8 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
       style={{
         cursor: "pointer",
         overflow: "hidden",
-        width: size,
-        height: size * 0.47,
+        width: `${sizeValue}${sizeUnit}`,
+        height: `${sizeValue * 0.47}${sizeUnit}`,
         appearance: 'none',
         MozAppearance: 'none',
         WebkitAppearance: 'none',
@@ -52,10 +54,10 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: size * -0.595,
-          marginLeft: size * -0.32,
-          width: size * 1.65,
-          height: size * 1.65
+          marginTop: `${sizeValue * -0.595}${sizeUnit}`,
+          marginLeft: `${sizeValue * -0.32}${sizeUnit}`,
+          width: `${sizeValue * 1.65}${sizeUnit}`,
+          height: `${sizeValue * 1.65}${sizeUnit}`
         }}
       >
         <Lottie
@@ -73,7 +75,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
 };
 
 NightModeToggle.propTypes = {
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   speed: PropTypes.number

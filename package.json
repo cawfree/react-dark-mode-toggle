@@ -34,6 +34,7 @@
     "uglify-js": "^3.7.7"
   },
   "dependencies": {
-    "lottie-react-web": "^2.1.4"
+    "lottie-react-web": "^2.1.4",
+    "parse-unit": "^1.0.1"
   }
 }
