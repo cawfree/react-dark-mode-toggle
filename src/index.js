@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, memo } from "react";
 import PropTypes from "prop-types";
 import Lottie from "lottie-react-web";
+import parseUnit from "parse-unit";
 
 const options = Object.freeze({
   animationData: require("./animationData.json"),
@@ -8,28 +9,10 @@ const options = Object.freeze({
   loop: true
 });
 
-const parseSize = size => {
-  let sizeUnit;
-  let sizeValue;
-  if (typeof size === 'number') {
-    sizeUnit = 'px';
-    sizeValue = size;
-  } else {
-    if (size.slice(-3) === 'rem') {
-      sizeUnit = 'rem';
-      sizeValue = +size.slice(0, -3);
-    } else {
-      sizeUnit = 'em';
-      sizeValue = +size.slice(0, -2);
-    } 
-  }
-  return [sizeUnit, sizeValue]
-} 
-
 const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
   const ref = useRef();
   const [progress, setProgress] = useState(() => 0);
-  const [sizeUnit, sizeValue] = parseSize(size);
+  const [sizeValue, sizeUnit] = parseUnit(size);
   useEffect(() => {
     if (progress >= 0.5) {
       if (checked) {
