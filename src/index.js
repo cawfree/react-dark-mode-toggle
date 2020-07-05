@@ -38,8 +38,8 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
       style={{
         cursor: "pointer",
         overflow: "hidden",
-        width: `${sizeValue}${sizeUnit}`,
-        height: `${sizeValue * 0.47}${sizeUnit}`,
+        width: `${sizeValue}${sizeUnit || 'px'}`,
+        height: `${sizeValue * 0.47}${sizeUnit || 'px'}`,
         appearance: 'none',
         MozAppearance: 'none',
         WebkitAppearance: 'none',
@@ -54,10 +54,10 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: `${sizeValue * -0.595}${sizeUnit}`,
-          marginLeft: `${sizeValue * -0.32}${sizeUnit}`,
-          width: `${sizeValue * 1.65}${sizeUnit}`,
-          height: `${sizeValue * 1.65}${sizeUnit}`
+          marginTop: `${sizeValue * -0.595}${sizeUnit || 'px'}`,
+          marginLeft: `${sizeValue * -0.32}${sizeUnit || 'px'}`,
+          width: `${sizeValue * 1.65}${sizeUnit || 'px'}`,
+          height: `${sizeValue * 1.65}${sizeUnit || 'px'}`
         }}
       >
         <Lottie
