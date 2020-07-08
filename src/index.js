@@ -13,7 +13,6 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
   const ref = useRef();
   const [progress, setProgress] = useState(() => 0);
   const [sizeValue, sizeUnit] = parseUnit(size);
-  const [visible, setVisible] = useState(false);
   useEffect(() => {
     if (progress >= 0.5) {
       if (checked) {
@@ -28,8 +27,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
   useEffect(
     () => {
       /* force */
-      (!!checked) && ref.current.anim.advanceTime(1000);
-      setVisible(true);
+      (!!checked) && ref.current.anim.advanceTime(1300);
     },
     [],
   );
@@ -44,8 +42,6 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
     <button
       onClick={() => ref.current.anim.isPaused && onChange(!checked)}
       style={{
-        opacity: visible ? 1 : 0.25,
-        transition: "opacity 300ms",
         cursor: "pointer",
         overflow: "hidden",
         width: `${sizeValue}${sizeUnit || 'px'}`,
