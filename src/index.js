@@ -28,7 +28,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
   useEffect(
     () => {
       /* force */
-      (!!checked) && ref.current.anim.advanceTime(1300);
+      (!!checked) && ref.current.anim.setCurrentRawFrameValue(48);
     },
     [],
   );
