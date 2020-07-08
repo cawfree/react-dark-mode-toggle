@@ -13,6 +13,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
   const ref = useRef();
   const [progress, setProgress] = useState(() => 0);
   const [sizeValue, sizeUnit] = parseUnit(size);
+  const segments = checked ? { segments: [2, 96] } : null;
   useEffect(() => {
     if (progress >= 0.5) {
       if (checked) {
@@ -74,6 +75,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
           eventListeners={eventListeners}
           forceSegments
           options={options}
+          {...segments}
         />
       </div>
     </button>
