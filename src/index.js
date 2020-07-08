@@ -13,6 +13,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
   const ref = useRef();
   const [progress, setProgress] = useState(() => 0);
   const [sizeValue, sizeUnit] = parseUnit(size);
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
     if (progress >= 0.5) {
       if (checked) {
@@ -24,7 +25,14 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
       ref.current.anim.pause();
     }
   }, [checked, progress]);
-  useEffect(() => (!!checked && ref.current.anim.play()) || undefined, []);
+  useEffect(
+    () => {
+      /* force */
+      (!!checked) && ref.current.anim.advanceTime(1000);
+      setVisible(true);
+    },
+    [],
+  );
   const [eventListeners] = useState(() => [
     {
       eventName: "enterFrame",
@@ -36,6 +44,8 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
     <button
       onClick={() => ref.current.anim.isPaused && onChange(!checked)}
       style={{
+        opacity: visible ? 1 : 0.25,
+        transition: "opacity 300ms",
         cursor: "pointer",
         overflow: "hidden",
         width: `${sizeValue}${sizeUnit || 'px'}`,
@@ -47,7 +57,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
         backgroundColor: 'transparent',
         padding: 0,
       }}
-      aria-hidden='true'
+      aria-hidden="true"
     >
       <div
         style={{
