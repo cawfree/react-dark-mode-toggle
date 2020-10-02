@@ -9,7 +9,7 @@ const options = Object.freeze({
   loop: true
 });
 
-const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
+const NightModeToggle = ({ size, checked, onChange, speed, className,...extraProps }) => {
   const ref = useRef();
   const [progress, setProgress] = useState(() => 0);
   const [sizeValue, sizeUnit] = parseUnit(size);
@@ -55,6 +55,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
         padding: 0,
       }}
       aria-hidden="true"
+      className={className}
     >
       <div
         style={{
@@ -86,14 +87,16 @@ NightModeToggle.propTypes = {
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   checked: PropTypes.bool,
   onChange: PropTypes.func,
-  speed: PropTypes.number
+  speed: PropTypes.number,
+  className: PropTypes.string
 };
 
 NightModeToggle.defaultProps = {
   size: 85,
   checked: false,
   onChange: nextValue => null,
-  speed: 1.3
+  speed: 1.3,
+  className: null
 };
 
 export default memo(NightModeToggle);

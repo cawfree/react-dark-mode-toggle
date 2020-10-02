@@ -47,8 +47,9 @@ Prop                  | Type     | Default                   | Required
 --------------------- | -------- | ------------------------- | --------
 `onChange`|func|`value => null`|No
 `checked`|boolean|`false`|No
-`size`|number (defaults to px) or string (px, em,rem, %, etc.)|`85`|No
+`size`|number (defaults to px) or string (px, em, rem, %, etc.)|`85`|No
 `speed`|number|`1.3`|No
+`className`|string|`null`|No|
 
 > **Note**, this is _not_ a dark mode theme implementation; it's just a button! You'll need to mix this with a management solution such as [use-dark-mode](https://github.com/donavon/use-dark-mode).
 
