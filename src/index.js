@@ -9,7 +9,7 @@ const options = Object.freeze({
   loop: true
 });
 
-const NightModeToggle = ({ size, checked, onChange, speed, className,...extraProps }) => {
+const NightModeToggle = ({ size, checked, onChange, speed, className, ...extraProps }) => {
   const ref = useRef();
   const [progress, setProgress] = useState(() => 0);
   const [sizeValue, sizeUnit] = parseUnit(size);
@@ -88,7 +88,7 @@ NightModeToggle.propTypes = {
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   speed: PropTypes.number,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 NightModeToggle.defaultProps = {
@@ -96,7 +96,7 @@ NightModeToggle.defaultProps = {
   checked: false,
   onChange: nextValue => null,
   speed: 1.3,
-  className: null
+  className: null,
 };
 
 export default memo(NightModeToggle);
