@@ -12,9 +12,13 @@
     "button"
   ],
   "scripts": {
-    "build": "yarn ; babel src --out-dir dist && uglifyjs dist/*.js -o dist/*.js ; cp ./src/animationData.json ./dist ;  rm -rf node_modules",
+    "prebuild": "yarn",
+    "build": "babel src --out-dir dist && uglifyjs dist/*.js -o dist/*.js",
+    "postbuild": "cp ./src/animationData.json ./dist ; cp ./src/index.d.ts ./dist",
     "prettify": "yarn prettier --write \"**/*.js\"",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": "https://github.com/cawfree/night-mode-toggle",
   "author": "Alex Thomas (@cawfree) <hello@cawfree.com>",
@@ -26,15 +30,18 @@
     "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
+    "@storybook/react": "^6.1.15",
+    "babel-loader": "^8.2.2",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
+    "react-dom": "^16.14.0",
     "uglify-js": "^3.7.7"
   },
   "dependencies": {
-    "lottie-react-web": "^2.1.4",
-    "parse-unit": "^1.0.1"
+    "parse-unit": "^1.0.1",
+    "react-lottie-player": "^1.1.1"
   }
 }

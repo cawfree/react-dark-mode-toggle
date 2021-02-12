@@ -1,58 +1,36 @@
-import React, { useRef, useEffect, useState, memo } from "react";
+import React, { memo, useCallback, useState } from "react";
 import PropTypes from "prop-types";
-import Lottie from "lottie-react-web";
+import Lottie from "react-lottie-player";
 import parseUnit from "parse-unit";
 
-const options = Object.freeze({
-  animationData: require("./animationData.json"),
-  autoplay: false,
-  loop: true
-});
+const animationData = require("./animationData.json");
 
-const NightModeToggle = ({ size, checked, onChange, speed, className, ...extraProps }) => {
-  const ref = useRef();
-  const [progress, setProgress] = useState(() => 0);
+const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
   const [sizeValue, sizeUnit] = parseUnit(size);
-  const segments = checked ? { segments: [2, 96] } : null;
-  useEffect(() => {
-    if (progress >= 0.5) {
-      if (checked) {
-        ref.current.anim.pause();
-      } else if (ref.current.anim.isPaused) {
-        ref.current.anim.play();
-      }
-    } else if (!checked) {
-      ref.current.anim.pause();
-    }
-  }, [checked, progress]);
-  useEffect(
-    () => {
-      /* force */
-      (!!checked) && ref.current.anim.setCurrentRawFrameValue(48);
-    },
-    [],
-  );
-  const [eventListeners] = useState(() => [
-    {
-      eventName: "enterFrame",
-      callback: ({ currentTime, totalTime }) =>
-        setProgress(currentTime / totalTime)
-    }
-  ]);
+  const [isReadyToAnimate, setReadyToAnimate] = useState(false);
+
+  const segmentsToPlay = checked ? [2, 50] : [51, 96]
+  const segmentToJumpToImmediately = checked ? 51 : 2
+
+  const onClick = useCallback(() => {
+    setReadyToAnimate(true);
+    onChange(!checked);
+  }, [checked]);
+
   return (
     <button
-      onClick={() => ref.current.anim.isPaused && onChange(!checked)}
+      onClick={onClick}
       style={{
         cursor: "pointer",
         overflow: "hidden",
-        width: `${sizeValue}${sizeUnit || 'px'}`,
-        height: `${sizeValue * 0.47}${sizeUnit || 'px'}`,
-        appearance: 'none',
-        MozAppearance: 'none',
-        WebkitAppearance: 'none',
-        border: 'none',
-        backgroundColor: 'transparent',
-        padding: 0,
+        width: `${sizeValue}${sizeUnit || "px"}`,
+        height: `${sizeValue * 0.47}${sizeUnit || "px"}`,
+        appearance: "none",
+        MozAppearance: "none",
+        WebkitAppearance: "none",
+        border: "none",
+        backgroundColor: "transparent",
+        padding: 0
       }}
       aria-hidden="true"
       className={className}
@@ -62,21 +40,20 @@ const NightModeToggle = ({ size, checked, onChange, speed, className, ...extraPr
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: `${sizeValue * -0.595}${sizeUnit || 'px'}`,
-          marginLeft: `${sizeValue * -0.32}${sizeUnit || 'px'}`,
-          width: `${sizeValue * 1.65}${sizeUnit || 'px'}`,
-          height: `${sizeValue * 1.65}${sizeUnit || 'px'}`
+          marginTop: `${sizeValue * -0.575}${sizeUnit || "px"}`,
+          marginLeft: `${sizeValue * -0.32}${sizeUnit || "px"}`,
+          width: `${sizeValue * 1.65}${sizeUnit || "px"}`,
+          height: `${sizeValue * 1.65}${sizeUnit || "px"}`
         }}
       >
         <Lottie
           key="$preventGlitches"
-          ref={ref}
+          play={isReadyToAnimate}
           speed={speed}
-          isClickToPauseDisabled
-          eventListeners={eventListeners}
-          forceSegments
-          options={options}
-          {...segments}
+          animationData={animationData}
+          loop={false}
+          segments={segmentsToPlay}
+          goTo={segmentToJumpToImmediately}
         />
       </div>
     </button>
@@ -88,7 +65,7 @@ NightModeToggle.propTypes = {
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   speed: PropTypes.number,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 NightModeToggle.defaultProps = {
@@ -96,7 +73,13 @@ NightModeToggle.defaultProps = {
   checked: false,
   onChange: nextValue => null,
   speed: 1.3,
-  className: null,
+  className: null
 };
 
-export default memo(NightModeToggle);
+const propsAreEqual = (prevProps, nextProps) =>
+  prevProps.size === nextProps.size &&
+  prevProps.checked === nextProps.checked &&
+  prevProps.speed === nextProps.speed &&
+  prevProps.className === nextProps.className
+
+export default memo(NightModeToggle, propsAreEqual);
