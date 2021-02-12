@@ -9,13 +9,13 @@ const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
   const [sizeValue, sizeUnit] = parseUnit(size);
   const [isReadyToAnimate, setReadyToAnimate] = useState(false);
 
-  const segmentsToPlay = checked ? [2, 50] : [51, 96]
-  const segmentToJumpToImmediately = checked ? 51 : 2
+  const segmentsToPlay = checked ? [2, 50] : [51, 96];
+  const segmentToJumpToImmediately = checked ? 51 : 2;
 
-  const onClick = useCallback(() => {
+  const onClick = () => {
     setReadyToAnimate(true);
     onChange(!checked);
-  }, [checked]);
+  };
 
   return (
     <button
