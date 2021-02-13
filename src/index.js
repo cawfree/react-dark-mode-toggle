@@ -12,14 +12,12 @@ const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
   const segmentsToPlay = checked ? [2, 50] : [51, 96];
   const segmentToJumpToImmediately = checked ? 51 : 2;
 
-  const onClick = () => {
-    setReadyToAnimate(true);
-    onChange(!checked);
-  };
-
   return (
     <button
-      onClick={onClick}
+      onClick={() => {
+        setReadyToAnimate(true);
+        onChange(!checked);
+      }}
       style={{
         cursor: "pointer",
         overflow: "hidden",
@@ -30,7 +28,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
         WebkitAppearance: "none",
         border: "none",
         backgroundColor: "transparent",
-        padding: 0
+        padding: 0,
       }}
       aria-hidden="true"
       className={className}
@@ -43,7 +41,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
           marginTop: `${sizeValue * -0.575}${sizeUnit || "px"}`,
           marginLeft: `${sizeValue * -0.32}${sizeUnit || "px"}`,
           width: `${sizeValue * 1.65}${sizeUnit || "px"}`,
-          height: `${sizeValue * 1.65}${sizeUnit || "px"}`
+          height: `${sizeValue * 1.65}${sizeUnit || "px"}`,
         }}
       >
         <Lottie
@@ -65,21 +63,21 @@ NightModeToggle.propTypes = {
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   speed: PropTypes.number,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 NightModeToggle.defaultProps = {
   size: 85,
   checked: false,
-  onChange: nextValue => null,
+  onChange: (nextValue) => null,
   speed: 1.3,
-  className: null
+  className: null,
 };
 
 const propsAreEqual = (prevProps, nextProps) =>
   prevProps.size === nextProps.size &&
   prevProps.checked === nextProps.checked &&
   prevProps.speed === nextProps.speed &&
-  prevProps.className === nextProps.className
+  prevProps.className === nextProps.className;
 
 export default memo(NightModeToggle, propsAreEqual);

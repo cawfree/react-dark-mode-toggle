@@ -2,7 +2,7 @@ import React from "react";
 import NightModeToggle from "../src";
 
 export default {
-  title: "Toggle"
+  title: "Toggle",
 };
 
 export const StartingInLightMode = () => {
