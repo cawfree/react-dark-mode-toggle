@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
 import Lottie from "react-lottie-player";
 import parseUnit from "parse-unit";
@@ -10,7 +10,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
   const [isReadyToAnimate, setReadyToAnimate] = useState(false);
 
   const segmentsToPlay = checked ? [2, 50] : [51, 96];
-  const segmentToJumpToImmediately = checked ? 51 : 2;
+  const segmentToGoTo = checked ? 51 : 2;
 
   return (
     <button
@@ -51,7 +51,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
           animationData={animationData}
           loop={false}
           segments={segmentsToPlay}
-          goTo={segmentToJumpToImmediately}
+          goTo={segmentToGoTo}
         />
       </div>
     </button>
