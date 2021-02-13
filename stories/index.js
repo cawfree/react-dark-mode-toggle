@@ -5,7 +5,7 @@ export default {
   title: "Toggle"
 };
 
-export const Unchecked = () => {
+export const StartingInLightMode = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
 
   return (
@@ -13,7 +13,7 @@ export const Unchecked = () => {
   );
 };
 
-export const Checked = () => {
+export const StartingInDarkMode = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(true);
 
   return (
