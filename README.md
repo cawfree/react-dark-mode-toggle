@@ -25,28 +25,11 @@ yarn add react-dark-mode-toggle
 
 ## ✨ Usage
 
-#### TypeScript
-
 ```typescript jsx
 import React from "react";
 import { DarkModeToggle } from "react-dark-mode-toggle";
 
-export const SomeComponent = () => {
-  const [isDarkMode, setIsDarkMode] = React.useState<boolean>(false);
-  
-  return (
-    <DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} />
-  );
-};
-```
-
-#### JavaScript
-
-```javascript
-import React from "react";
-import { DarkModeToggle } from "react-dark-mode-toggle";
-
-export const SomeComponent = () => {
+export const YourComponent = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
   
   return (
