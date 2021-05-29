@@ -2,7 +2,11 @@
   "name": "react-dark-mode-toggle",
   "version": "0.2.0",
   "description": "🦉 A cutesy dark mode toggle button for React.",
-  "main": "dist",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "react",
     "dark",
@@ -12,10 +16,9 @@
     "button"
   ],
   "scripts": {
-    "prebuild": "yarn",
-    "build": "babel src --out-dir dist && uglifyjs dist/*.js -o dist/*.js",
-    "postbuild": "cp ./src/animationData.json ./dist ; cp ./src/index.d.ts ./dist",
-    "prettify": "yarn prettier --write \"**/*.js\"",
+    "prebuild": "yarn && rimraf dist",
+    "build": "rollup -c",
+    "format": "prettier --write \"./src/**/*.{ts,tsx}\" && prettier --write \"./stories/**/*.{ts,tsx}\"",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -25,23 +28,46 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
-    "@babel/polyfill": "^7.8.3",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/preset-react": "^7.8.3",
-    "@storybook/react": "^6.1.15",
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/react": "^6.2.9",
+    "@types/jest": "^26.0.23",
     "babel-loader": "^8.2.2",
     "husky": "^4.2.3",
-    "jest": "^25.1.0",
-    "prettier": "^2.2.1",
-    "prop-types": "^15.7.2",
+    "jest": "^27.0.2",
+    "lint-staged": "^11.0.0",
+    "postcss": "^8.3.0",
+    "prettier": "^2.3.0",
     "react": "^16.12.0",
     "react-dom": "^16.14.0",
-    "uglify-js": "^3.7.7"
+    "react-lottie-player": "^1.3.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.50.4",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-jest": "^27.0.1",
+    "ts-loader": "^9.2.2",
+    "typescript": "^4.3.2"
   },
   "dependencies": {
-    "parse-unit": "^1.0.1",
-    "react-lottie-player": "^1.1.1"
+    "react-lottie-player": "^1.3.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo \"Type-checking...\" && tsc --noEmit && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./{src,stories}/**/*.{ts,tsx,js,jsx}": [
+      "prettier --write"
+    ]
   }
 }

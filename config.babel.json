@@ -1,0 +1,13 @@
+{
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "loose": true,
+          "shippedProposals": true
+        }
+      ]
+    ]
+  }
+}
