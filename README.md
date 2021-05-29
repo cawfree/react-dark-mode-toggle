@@ -42,11 +42,11 @@ export const YourComponent = () => {
 
 Prop                  | Type     | Default                   | Required
 --------------------- | -------- | ------------------------- | --------
-`onChange`|func|`value => null`|No
+`onChange`|func|`() => {}`|No
 `checked`|boolean|`false`|No
-`size`|number (defaults to `px`) or a string containing a number+unit (e.g `"10px"`, `"2em"`, `"4.5rem"`, `"100%"`, etc). These units may also have a space between them (e.g. `"10 px"`, `"2 em"`, etc).|`85`|No
+`size`|number (defaults to `px`) or a string containing a number+unit (e.g `"10px"`, `"2em"`, `"4.5rem"`, `"100%"`, etc). These units may also have a space between them (e.g. `"10 px"`, `"2 em"`, etc).|`85px`|No
 `speed`|number|`1.3`|No
-`className`|string|`null`|No|
+`className`|string|`''`|No|
 
 > **Note**, this is _not_ a dark mode theme implementation; it's just a button! You'll need to mix this with a management solution such as [use-dark-mode](https://github.com/donavon/use-dark-mode).
 
