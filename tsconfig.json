@@ -18,5 +18,7 @@
     "node_modules",
     "dist",
     "src/**/*.stories.tsx",
+    "src/**/*.test.tsx",
+    "src/**/*.test.ts",
   ]
 }

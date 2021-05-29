@@ -1,5 +1,5 @@
 assets/
 src/
 stories/
-.storybook
+.storybook/
 .babelrc
