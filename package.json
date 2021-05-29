@@ -19,7 +19,8 @@
     "prebuild": "yarn && rimraf dist",
     "build": "rollup -c rollup.config.ts",
     "format": "prettier --write \"./src/**/*.{ts,tsx}\" && prettier --write \"./stories/**/*.{ts,tsx}\"",
-    "test": "jest",
+    "type-check": "echo \"Type-checking...\" && tsc --noEmit",
+    "test": "echo \"Running tests...\" && jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -58,7 +59,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo \"Type-checking...\" && tsc --noEmit && yarn test && lint-staged"
+      "pre-commit": "yarn type-check && yarn test && lint-staged"
     }
   },
   "lint-staged": {
