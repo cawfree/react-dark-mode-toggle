@@ -5,7 +5,7 @@ import animationData from "./animationData.json";
 
 export declare namespace DarkModeToggle {
   export type Props = {
-    /** Size of the component.  Numbers are assumed to be pixels. Also accepts strings of the format "20px" or "1.5%". */
+    /** Size of the component. Numbers = pixels. Strings = "<number><unit>" e.g. "20px" or "1.5%" (default = "85px"); */
     readonly size?: number | string;
     /** Whether or not the toggle is currently in dark-mode (default = false) */
     readonly checked?: boolean;
@@ -13,10 +13,19 @@ export declare namespace DarkModeToggle {
     readonly onChange?: (isChecked: boolean) => void;
     /** Use this to control the speed at which the toggle animation occurs (default = 1.3) */
     readonly speed?: number;
-    /** Optional className prop for the <button/> element */
+    /** Optional className prop for the <button/> element (default = "") */
     readonly className?: string;
   };
 }
+
+const arePropsEqual = (
+  prevProps: DarkModeToggle.Props,
+  nextProps: DarkModeToggle.Props
+) =>
+  prevProps.size === nextProps.size &&
+  prevProps.checked === nextProps.checked &&
+  prevProps.speed === nextProps.speed &&
+  prevProps.className === nextProps.className;
 
 export const DarkModeToggle = React.memo<DarkModeToggle.Props>(
   ({
@@ -24,7 +33,7 @@ export const DarkModeToggle = React.memo<DarkModeToggle.Props>(
     checked = false,
     onChange = () => {},
     speed = 1.3,
-    className = null,
+    className = "",
   }) => {
     const [sizeValue, sizeUnit] = parseUnit(size);
     const [isReadyToAnimate, setReadyToAnimate] = React.useState(false);
@@ -32,14 +41,12 @@ export const DarkModeToggle = React.memo<DarkModeToggle.Props>(
     const segmentsToPlay = checked ? [2, 50] : [51, 96];
     const segmentToGoTo = checked ? 51 : 2;
 
-    const toggleState = () => {
-      setReadyToAnimate(true);
-      onChange(!checked);
-    };
-
     return (
       <button
-        onClick={toggleState}
+        onClick={() => {
+          setReadyToAnimate(true);
+          onChange(!checked);
+        }}
         style={{
           cursor: "pointer",
           overflow: "hidden",
@@ -79,9 +86,5 @@ export const DarkModeToggle = React.memo<DarkModeToggle.Props>(
       </button>
     );
   },
-  (prevProps: DarkModeToggle.Props, nextProps: DarkModeToggle.Props) =>
-    prevProps.size === nextProps.size &&
-    prevProps.checked === nextProps.checked &&
-    prevProps.speed === nextProps.speed &&
-    prevProps.className === nextProps.className
+  arePropsEqual
 );
