@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "prebuild": "yarn && rimraf dist",
-    "build": "rollup -c",
+    "build": "rollup -c rollup.config.ts",
     "format": "prettier --write \"./src/**/*.{ts,tsx}\" && prettier --write \"./stories/**/*.{ts,tsx}\"",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
@@ -50,6 +50,7 @@
     "rollup-plugin-typescript2": "^0.30.0",
     "ts-jest": "^27.0.1",
     "ts-loader": "^9.2.2",
+    "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
   },
   "dependencies": {
