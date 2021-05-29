@@ -33,7 +33,11 @@ export const YourComponent = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
   
   return (
-    <DarkModeToggle onChange={setIsDarkMode} checked={isDarkMode} />
+    <DarkModeToggle 
+      onChange={setIsDarkMode} 
+      checked={isDarkMode} 
+      size={85} 
+    />
   );
 };
 ```
