@@ -58,7 +58,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo \"Type-checking...\" && tsc --noEmit && lint-staged"
+      "pre-commit": "echo \"Type-checking...\" && tsc --noEmit && yarn test && lint-staged"
     }
   },
   "lint-staged": {
