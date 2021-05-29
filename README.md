@@ -11,13 +11,13 @@ A super cutesy dark mode toggle button for [React](https://github.com/facebook/r
 
 ## 🚀 Getting Started
 
-##### [`npm`]():
+##### [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm):
 
 ```bash
 npm i react-dark-mode-toggle
 ```
 
-##### [`yarn`]():
+##### [`yarn`](https://classic.yarnpkg.com/en/docs/install/#mac-stable):
 
 ```bash
 yarn add react-dark-mode-toggle
