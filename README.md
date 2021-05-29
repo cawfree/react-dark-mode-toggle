@@ -67,6 +67,11 @@ Prop                  | Type     | Default                   | Required
 
 > **Note**, this is _not_ a dark mode theme implementation; it's just a button! You'll need to mix this with a management solution such as [use-dark-mode](https://github.com/donavon/use-dark-mode).
 
+### 📝 Notes
+
+In Chrome, you may experience a blue outline around the toggle button after clicking it.
+If this behavior concerns you see [this issue](https://github.com/cawfree/react-dark-mode-toggle/issues/17) for more information and available workarounds. 
+
 ## ✌️ License
 [MIT](https://opensource.org/licenses/MIT)
 
