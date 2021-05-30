@@ -109,5 +109,3 @@ dist
 # Intellij
 .idea
 *.iml
-
-yarn.lock
