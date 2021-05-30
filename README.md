@@ -11,17 +11,22 @@ A super cutesy dark mode toggle button for [React](https://github.com/facebook/r
 
 ## 🚀 Getting Started
 
+This library uses [react-lottie-player](https://github.com/mifi/react-lottie-player) to render the underlying [Lottie](https://lottiefiles.com/)
+animation behind the toggle, so it is the only required dependency.
+
 ##### [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm):
 
 ```bash
-npm i react-dark-mode-toggle
+npm i react-lottie-player react-dark-mode-toggle
 ```
 
 ##### [`yarn`](https://classic.yarnpkg.com/en/docs/install/#mac-stable):
 
 ```bash
-yarn add react-dark-mode-toggle
+yarn add react-lottie-player react-dark-mode-toggle
 ```
+
+
 
 ## ✨ Usage
 

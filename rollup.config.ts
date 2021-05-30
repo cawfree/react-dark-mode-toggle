@@ -29,4 +29,5 @@ export default {
       compact: true,
     }),
   ],
+  external: ["react", "react-dom"],
 };
