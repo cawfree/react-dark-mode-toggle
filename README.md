@@ -1,5 +1,8 @@
 # react-dark-mode-toggle
 
+> Hello! 👋 This package is now __deprecated__.
+> Please migrate over to [__react-dark-mode-toggle-2__](https://github.com/todd-elvers/react-dark-mode-toggle-2).
+
 A super cutesy dark mode toggle button for [React](https://github.com/facebook/react). Inspired by [overreacted.io](https://overreacted.io/).
 
 <a href="#badge">
@@ -55,11 +58,3 @@ Prop                  | Type     | Default                   | Required
 
 ## ✌️ License
 [MIT](https://opensource.org/licenses/MIT)
-
-<p align="center">
-  <a href="https://www.buymeacoffee.com/cawfree">
-    <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy @cawfree a coffee" width="232" height="50" />
-  </a>
-</p>
-
-
