@@ -14,31 +14,37 @@ A super cutesy dark mode toggle button for [React](https://github.com/facebook/r
 
 ## 🚀 Getting Started
 
-Using [`npm`]():
+This library uses [react-lottie-player](https://github.com/mifi/react-lottie-player) to render the underlying [Lottie](https://lottiefiles.com/)
+animation behind the toggle, so it is the only required dependency.
+
+##### [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm):
 
 ```bash
-npm i react-dark-mode-toggle
+npm i react-lottie-player react-dark-mode-toggle
 ```
 
-Using [`yarn`]():
+##### [`yarn`](https://classic.yarnpkg.com/en/docs/install/#mac-stable):
 
 ```bash
-yarn add react-dark-mode-toggle
+yarn add react-lottie-player react-dark-mode-toggle
 ```
+
+
 
 ## ✨ Usage
 
-```javascript
-import React, {useState} from "react";
-import DarkModeToggle from "react-dark-mode-toggle";
+```typescript jsx
+import React from "react";
+import { DarkModeToggle } from "react-dark-mode-toggle";
 
-export default () => {
-  const [isDarkMode, setIsDarkMode] = useState(() => false);
+export const YourComponent = () => {
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
+  
   return (
-    <DarkModeToggle
-      onChange={setIsDarkMode}
-      checked={isDarkMode}
-      size={80}
+    <DarkModeToggle 
+      onChange={setIsDarkMode} 
+      checked={isDarkMode} 
+      size={85} 
     />
   );
 };
@@ -48,13 +54,18 @@ export default () => {
 
 Prop                  | Type     | Default                   | Required
 --------------------- | -------- | ------------------------- | --------
-`onChange`|func|`value => null`|No
+`onChange`|func|`() => {}`|No
 `checked`|boolean|`false`|No
-`size`|number (defaults to px) or string (px, em, rem, %, etc.)|`85`|No
+`size`|number (defaults to `px`) or a string containing a number+unit (e.g `"10px"`, `"2em"`, `"4.5rem"`, `"100%"`, etc). These units may also have a space between them (e.g. `"10 px"`, `"2 em"`, etc).|`85px`|No
 `speed`|number|`1.3`|No
-`className`|string|`null`|No|
+`className`|string|`''`|No|
 
 > **Note**, this is _not_ a dark mode theme implementation; it's just a button! You'll need to mix this with a management solution such as [use-dark-mode](https://github.com/donavon/use-dark-mode).
+
+### 📝 Notes
+
+In Chrome, you may experience a blue outline around the toggle button after clicking it.
+If this behavior concerns you see [this issue](https://github.com/cawfree/react-dark-mode-toggle/issues/17) for more information and available workarounds. 
 
 ## ✌️ License
 [MIT](https://opensource.org/licenses/MIT)
